@@ -1,0 +1,21 @@
+wiki/1
+
+§ Dynamically Redefined Character Set
+
+⸺ by Charles Iliya Krempeaux
+
+The [[computer-terminal]] **dynamically-redefined-character-set** (**DRCS**) is a technology that can be used to upload new [[character-glyph]]s to a computer-terminal at a range of character‐code‐points so that an application can use them for their own custom character-glyphs for their own custom characters.
+
+With the **dynamically-redefined-character-set** (**DRCS**) technology, new character-glyphs are uploaded to the computer-terminal using the [[sixel]] bitmap graphics data-format.
+
+The computer-terminal **dynamically‐redefined‐character‐set** (**DRCS**) technology is similar in idea of a [[unicode/private‐use‐area]].
+
+The custom character fonts uploaded into a computer-terminal that has **dynamically-redefined-character-set** (**DRCS**) technology is called a **soft-character-set**.
+
+Some computer-terminals that supported the **dynamically-redefined-character-set** (**DRCS**) technology include:
+
+• [[vt220]]
+• [[vt240]]
+• [[vt241]]
+• [[vt320]]
+• [[vt420]]
