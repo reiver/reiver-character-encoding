@@ -1,0 +1,78 @@
+wiki/1
+
+§ Composition
+
+⸺ by Charles Iliya Krempeaux
+
+Here are some **topics** about **composition** I have written about.
+
+Note that **composition** includes both //writing// and //drawing//.
+Including //writing// and //drawing// on a computer.
+
+§§ A
+
+• [[ansi-art]]
+• [[ansimation]]
+• [[ascii-art]]
+
+§§ B
+
+§§ C
+
+• [[character-set]]
+• [[cp437]]
+
+§§ D
+
+• [[dynamically‐redefined‐character‐set]]
+
+§§ E
+
+§§ F
+
+§§ G
+
+§§ H
+
+§§ I
+
+§§ J
+
+§§ K
+
+§§ L
+
+§§ M
+
+§§ N
+
+§§ O
+
+§§ P
+
+• [[unicode]]
+• [[unicode/private-use-area]]
+• [[utf-8]]
+
+§§ Q
+
+§§ R
+
+§§ S
+
+• [[semigraphics]]
+• [[sixel]]
+
+§§ T
+
+§§ U
+
+§§ V
+
+§§ W
+
+§§ X
+
+§§ Y
+
+§§ Z
