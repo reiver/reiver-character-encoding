@@ -4,7 +4,7 @@ wiki/1
 
 ⸺ by Charles Iliya Krempeaux
 
-An **ansimation(( is an animation created using (some type of) text characters and ANSI‐escape‐codes.
+An **ansimation** is an animation created using (some type of) text characters and ANSI‐escape‐codes.
 
 The ANSI‐escape‐codes are typically used for:
 
