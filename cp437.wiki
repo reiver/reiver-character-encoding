@@ -1,0 +1,24 @@
+wiki/1
+
+§ CP437
+
+⸺ by Charles Iliya Krempeaux
+
+The **CP437** [[character-set]] is a 128-bit character-set that was common with the IBM PC and the IBM PC clones.
+
+Other names for CP437 include:
+
+• csPC8CodePage437,
+• code-page-437,
+• dos-latin-us,
+• oem-437,
+• oem-us, and
+• pc-8.
+
+All CP437 characters have equivalents in the [[unicode]] character-set; although that numerical representations of the characters are different with many of them.
+
+§§ Art
+
+A lot of the vintage [[ansi-art]] used the **cp437** character-set.
+
+A lot of the (so called) [[ascii-art]] also actually used the **cp437** character-set (rather than the [[ascii]] character-set.)
