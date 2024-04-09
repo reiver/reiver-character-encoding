@@ -39,3 +39,12 @@ Or in hexadecimal:
 Or in binary:
 
 	0b00011011 0b01010000
+
+Related to sixels are:
+
+• [[ansi‐art]],
+• [[ansimations]],
+• [[ascii‐art]],
+• [[mouse‐text]],
+• [[remote‐graphic‐instruction‐set]],
+• [[semigraphics]].
