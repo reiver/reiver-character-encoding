@@ -32,11 +32,15 @@ Including //writing// and //drawing// on a computer.
 
 §§ G
 
+• [[gif-format]]
+
 §§ H
 
 §§ I
 
 §§ J
+
+• [[jpeg-format]]
 
 §§ K
 
@@ -50,15 +54,16 @@ Including //writing// and //drawing// on a computer.
 
 §§ P
 
-• [[unicode]]
-• [[unicode/private-use-area]]
-• [[utf-8]]
+• [[pbm-format]]
+• [[pgm-format]]
+• [[png-format]]
+• [[ppm-format]]
 
 §§ Q
 
 §§ R
 
-• [[remote‐graphic‐instruction‐set]] (***ReGIS**)
+• [[remote‐graphic‐instruction‐set]] (**ReGIS**)
 
 §§ S
 
@@ -67,13 +72,22 @@ Including //writing// and //drawing// on a computer.
 
 §§ T
 
+• [[tiff-format]]
+
 §§ U
+
+• [[unicode]]
+• [[unicode/private-use-area]]
+• [[utf-8]]
 
 §§ V
 
 §§ W
 
 §§ X
+
+• [[xbm-format]]
+• [[xpm-format]]
 
 §§ Y
 
