@@ -58,6 +58,8 @@ Including //writing// and //drawing// on a computer.
 
 §§ R
 
+• [[remote‐graphic‐instruction‐set]] (***ReGIS**)
+
 §§ S
 
 • [[semigraphics]]
