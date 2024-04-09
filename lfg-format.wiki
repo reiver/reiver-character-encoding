@@ -1,0 +1,80 @@
+wiki/1
+
+§ lfg-format
+
+⸺ by Charles Iliya Krempeaux
+
+The **lfg-format** is an **image** [[data-format]] created by **Charles Iliya Krempeaux**.
+
+The **lfg-format** is meant to not only be [[human-legible]], [[programmer-legible]], and [[machine-legible]] — but it is also meant to be [[human-friendly]].
+
+These concerns are places higher than things like file-size.
+(Compression and other concerns are handled at other levels.)
+
+"//LFG//" is an initialization of "//legible friendly graphics//".
+
+The **lfg-format** is similar to the [[pbm-format]], the [[pgm-format]], the [[ppm-format]], the [[xbm-format]], and the [[xpm-format]].
+
+Here is an example **lfg-format** image:
+
+	LFG/1
+	
+	=width 8
+	=height 16
+	=color #55ffff ■
+	=color #ff55ff □
+	=magnification 25
+	
+	■■■■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□□□□□□
+	■□□□□□□□
+	■■■■■■■■
+
+A **lfg-format** image is a [[unicode]] [[utf-8]] file that starts with the "magic":
+
+	LFG/1
+
+It then has a number of name-value pairs.
+You can tell a line is a name-value pair because it starts with an //equal-sign// ("=").
+
+Certain //names// (for the name-value pairs) are special:
+
+• ``width``
+• ``height``
+• ``color``
+• ``magnification``
+
+Empty lines are ignored.
+
+There are 3 valid end-of-line characters:
+
+• LF  (U+000A) (line-feed)
+• NEL (U+0085) (next-line)
+• LS  (U+2028) (line-separator)
+
+The CR (U+000D) character is ignored.
+
+end-of-line and spacing characters within image data is //not// significant.
+
+For example, this is the same image as before:
+
+	LFG/1
+	=width 8
+	=height 16
+	=color #55ffff ■
+	=color #ff55ff □
+	=magnification 25
+	■■■■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□□□□□□■□□□□□□□■■■■■■■■
+
