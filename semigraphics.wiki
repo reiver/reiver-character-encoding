@@ -18,4 +18,6 @@ Related to semigraphics are:
 • [[ansi‐art]],
 • [[ansimations]],
 • [[ascii‐art]],
-• [[mouse‐text]].
+• [[mouse‐text]],
+• [[remote‐graphic‐instruction‐set]],
+• [[sixel]].
