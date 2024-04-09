@@ -4,7 +4,7 @@ wiki/1
 
 ⸺ by Charles Iliya Krempeaux
 
-The **sixel** graphics data‐format is a [[data‐format]]	 used by a number computer‐terminals to do things such as:
+The **sixel** graphics data‐format is a [[data‐format]] used by a number computer‐terminals to do things such as:
 
 • drawing images on a computer‐terminal display screen, and
 • load a [[soft-character-set]] into a [[computer‐terminal]]'s [[dynamically-redefined-character-set]] (**DRCS**) memory.
