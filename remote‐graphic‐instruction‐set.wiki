@@ -7,3 +7,12 @@ wiki/1
 The ReGIS graphics data‐format is a data‐format used by a number computer‐terminals for vector‐graphics.
 
 ReGIS is an abbreviation for remote‐graphic‐instruction‐set.
+
+Related to sixels are:
+
+• [[ansi‐art]],
+• [[ansimations]],
+• [[ascii‐art]],
+• [[mouse‐text]],
+• [[semigraphics]],
+• [[sixel]],
