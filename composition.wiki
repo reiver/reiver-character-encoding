@@ -24,7 +24,7 @@ Including //writing// and //drawing// on a computer.
 
 §§ D
 
-• [[dynamically‐redefined‐character‐set]]
+• [[dynamically‐redefined‐character‐set]] (**DRCS**)
 
 §§ E
 
