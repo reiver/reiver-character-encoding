@@ -8,7 +8,7 @@ The **lfg-format** is an **image** [[data-format]] created by **Charles Iliya Kr
 
 The **lfg-format** is meant to not only be [[human-legible]], [[programmer-legible]], and [[machine-legible]], but — it is also meant to be [[human-friendly]].
 
-I.e., the not only is the **lfg-format** meant to be easy for (non-programmer) humans, programmers, and machines (i.e., computers) to read and understand it, but — it is also meant to be easy for a (non-programmer) human to create  and edit them in a [[text-editor]].
+I.e., not only is the **lfg-format** meant to be easy for (non-programmer) humans, programmers, and machines (i.e., computers) to read and understand it, but — it is also meant to be easy for a (non-programmer) human to create  and edit them in a [[text-editor]].
 
 These concerns are placed higher than other concerns, such as file-size minimization.
 (Compression and other concerns are handled at other levels.)
