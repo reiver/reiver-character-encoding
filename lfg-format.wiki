@@ -8,7 +8,7 @@ The **lfg-format** is an **image** [[data-format]] created by **Charles Iliya Kr
 
 The **lfg-format** is meant to not only be [[human-legible]], [[programmer-legible]], and [[machine-legible]], but — it is also meant to be [[human-friendly]].
 
-I.e., the **lfg-format** not only is the **lfg-format** meant to be easy for (non-programmer) humans, programmers, and machines (i.e., computers) to reaf it and understand, but — it is meant to be easy for a (non-programmer) human to create and edit it themselves.
+I.e., the not only is the **lfg-format** meant to be easy for (non-programmer) humans, programmers, and machines (i.e., computers) to read and understand it, but — it is also meant to be easy for a (non-programmer) human to create  and edit them in a [[text-editor]].
 
 These concerns are placed higher than other concerns, such as file-size minimization.
 (Compression and other concerns are handled at other levels.)
@@ -77,7 +77,7 @@ In the case of this example, it is:
 	#ff55ff □
 
 Our example only has 2 colors.
-**But we could have used more or less colors than the number of colors this example had.##
+**But we could have used more or less colors than the number of colors this example had.**
 
 We know then the [[color-palette]] rows end because there will be a //single empty line//.
 
@@ -111,9 +111,11 @@ There are 3 valid [[end-of-line]] characters:
 
 The CR (U+000D) character is ignored.
 
+(We care about end-of-line characters for the magic line, the width line, and height line, the magnification line, and color lines, and the empty line after the the color lines — but don't care about end-of-line characters after that.)
+
 §§ Image Data
 
-[[end-of-line]] and spacing characters within image data is //not// significant.
+[[end-of-line]] and spacing characters within **image data** is //not// significant.
 
 For example, this is the same image as before:
 
@@ -136,7 +138,7 @@ In the case of our example, it was:
 
 §§ Example
 
-Here is another lfg image:
+Here is another example lfg image:
 
 	LFG/1
 	8
@@ -155,5 +157,6 @@ Here is another lfg image:
 	..□□□□..
 	..□□□□..
 
-In this example, the **image data** is 8×8, which gets magnified by a factor of 25, to make the actual image 200×200.
+In this example, the **image data** is 8×8, which gets magnified by a factor of 64, to make the actual image 512×512.
 It used 3 colors: ``#000000``, ``#233f8b``, and ``#fdbd96``.
+
