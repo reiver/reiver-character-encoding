@@ -6,25 +6,28 @@ wiki/1
 
 The **lfg-format** is an **image** [[data-format]] created by **Charles Iliya Krempeaux**.
 
-The **lfg-format** is meant to not only be [[human-legible]], [[programmer-legible]], and [[machine-legible]] — but it is also meant to be [[human-friendly]].
+The **lfg-format** is meant to not only be [[human-legible]], [[programmer-legible]], and [[machine-legible]], but — it is also meant to be [[human-friendly]].
 
-These concerns are places higher than things like file-size.
+I.e., the **lfg-format** not only is the **lfg-format** meant to be easy for (non-programmer) humans, programmers, and machines (i.e., computers) to reaf it and understand, but — it is meant to be easy for a (non-programmer) human to create and edit it themselves.
+
+These concerns are placed higher than other concerns, such as file-size minimization.
 (Compression and other concerns are handled at other levels.)
 
 "//LFG//" is an initialization of "//legible friendly graphics//".
 
-The **lfg-format** is similar to the [[pbm-format]], the [[pgm-format]], the [[ppm-format]], the [[xbm-format]], and the [[xpm-format]].
+The **lfg-format** is somewhat similar to the [[pbm-format]], the [[pgm-format]], the [[ppm-format]], the [[xbm-format]], and the [[xpm-format]].
+
+§§ Example
 
 Here is an example **lfg-format** image:
 
 	LFG/1
-	
-	=width 8
-	=height 16
-	=color #55ffff ■
-	=color #ff55ff □
-	=magnification 25
-	
+	8
+	16
+	25
+	#55ffff ■
+	#ff55ff □
+
 	■■■■■■■■
 	■□□■■■■■
 	■□□■■■■■
@@ -42,23 +45,65 @@ Here is an example **lfg-format** image:
 	■□□□□□□□
 	■■■■■■■■
 
-A **lfg-format** image is a [[unicode]] [[utf-8]] file that starts with the "magic":
+A **lfg-format** image is a [[unicode]] [[utf-8]] file that starts with the "magic" on the first line:
 
 	LFG/1
 
-It then has a number of name-value pairs.
-You can tell a line is a name-value pair because it starts with an //equal-sign// ("=").
+(The "LFG" has to be a [[upper-case]] letters.)
 
-Certain //names// (for the name-value pairs) are special:
+Next comes the **width** of the image data.
+In the case of this example, the //width// is:
 
-• ``width``
-• ``height``
-• ``color``
-• ``magnification``
+	8
 
-Empty lines are ignored.
+After that comes the **height** of the image data..
+In the case of this example, the //height// is:
 
-There are 3 valid end-of-line characters:
+	16
+
+(And thus the **image data** will be 8×16.)
+
+And then after that comes **magnification**.
+In the case of this example, the //magnification// is:
+
+	25
+
+(And thus, even though our **image data** will be 8×16, the actual image will be 200×400 — because 8 times 25 equals 200, and 16 timrs 25 equals 400.)
+
+After that comes the [[color-palette]], which includes the character used for that color.
+In the case of this example, it is:
+
+	#55ffff ■
+	#ff55ff □
+
+Our example only has 2 colors.
+**But we could have used more or less colors than the number of colors this example had.##
+
+We know then the [[color-palette]] rows end because there will be a //single empty line//.
+
+After that is the **image data**.
+In the case of this example, it is:
+
+	■■■■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□■■■■■
+	■□□□□□□□
+	■□□□□□□□
+	■■■■■■■■
+
+§§ End-Of-Line
+
+There are 3 valid [[end-of-line]] characters:
 
 • LF  (U+000A) (line-feed)
 • NEL (U+0085) (next-line)
@@ -66,15 +111,49 @@ There are 3 valid end-of-line characters:
 
 The CR (U+000D) character is ignored.
 
-end-of-line and spacing characters within image data is //not// significant.
+§§ Image Data
+
+[[end-of-line]] and spacing characters within image data is //not// significant.
 
 For example, this is the same image as before:
 
 	LFG/1
-	=width 8
-	=height 16
-	=color #55ffff ■
-	=color #ff55ff □
-	=magnification 25
+	8
+	16
+	25
+	#55ffff ■
+	#ff55ff □
+
 	■■■■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□■■■■■■□□□□□□□■□□□□□□□■■■■■■■■
 
+§§ Missing Image Data
+
+If there is less **image data** than what the width×height says there should be, then the missing data should be set to the first palette color.
+
+In the case of our example, it was:
+
+	#55ffff ■
+
+§§ Example
+
+Here is another lfg image:
+
+	LFG/1
+	8
+	8
+	64
+	#000000 .
+	#233f8b □
+	#fdbd96 ■
+	
+	........
+	...□□...
+	..□□□□..
+	..□■□■..
+	..□□□□..
+	..□□□□..
+	..□□□□..
+	..□□□□..
+
+In this example, the **image data** is 8×8, which gets magnified by a factor of 25, to make the actual image 200×200.
+It used 3 colors: ``#000000``, ``#233f8b``, and ``#fdbd96``.
