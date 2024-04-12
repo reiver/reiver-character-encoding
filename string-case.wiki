@@ -37,3 +37,6 @@ Some **string case** names have alternative names.
 
 • [[kebab-case]] — example: **hello-world** (same as **slug-case**)
 • [[lisp-case]] — example: **hello-world** (same as **slug-case**)
+• [[property-case]] — example: **hello-world** (same as **slug-case**)
+
+• [[header-case]] — example: **Hello-World** (same as **title-slug-case**)

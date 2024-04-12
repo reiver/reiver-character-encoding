@@ -38,6 +38,8 @@ Including //writing// and //drawing// on a computer.
 
 §§ H
 
+• [[header-case]]
+
 §§ I
 
 §§ J
@@ -68,6 +70,7 @@ Including //writing// and //drawing// on a computer.
 • [[pgm-format]]
 • [[png-format]]
 • [[ppm-format]]
+• [[property-case]]
 
 §§ Q
 
