@@ -1,0 +1,37 @@
+wiki/1
+
+§ String Case
+
+⸺ by Charles Iliya Krempeaux
+
+The **string case** describes how spacing and casing is done in a phrase.
+
+Different types of **string casing** include:
+
+• [[lower-case]] — example: **hello world**
+• [[title-case]] — example: **Hello World**
+• [[upper-case]] — example: **HELLO WORLD**
+
+• [[camel-case]] — example: **helloWorld**
+
+• [[pascal-case]] — example: **HelloWorld** (same as **upper-camel-case**)
+• [[upper-camel-case]] — example: **HelloWorld**
+
+• [[snake-case]] — example: **hello_world**
+
+• [[const-case]] — example: **HELLO_WORLD** (same as **upper-snake-case**)
+• [[screaming-snake-case]] — example: **HELLO_WORLD** (same as **upper-snake-case**)
+• [[upper-snake-case]] — example: **HELLO_WORLD**
+
+• [[title-snake-case]] — example: **Hello_World**
+
+• [[llama-case]] — example: **helloworld**
+• [[upper-llama-case]] — example: **HELLOWORLD**
+
+• [[kebab-case]] — example: **hello-world** (same as **slug-case**)
+• [[lisp-case]] — example: **hello-world** (same as **slug-case**)
+• [[slug-case]] — example: **hello-world**
+
+• [[title-slug-case]] — example: **Hello-World**
+
+• [[upper-slug-case]] — example: **HELLO-WORLD**

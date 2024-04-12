@@ -19,7 +19,9 @@ Including //writing// and //drawing// on a computer.
 
 §§ C
 
+• [[camel-case]]
 • [[character-set]]
+• [[const-case]]
 • [[cp437]]
 
 §§ D
@@ -44,9 +46,14 @@ Including //writing// and //drawing// on a computer.
 
 §§ K
 
+• [[kebab-case]]
+
 §§ L
 
 • [[lfg-format]]
+• [[lisp-case]]
+• [[llama-case]]
+• [[lower-case]]
 
 §§ M
 
@@ -56,6 +63,7 @@ Including //writing// and //drawing// on a computer.
 
 §§ P
 
+• [[pascal-case]]
 • [[pbm-format]]
 • [[pgm-format]]
 • [[png-format]]
@@ -69,17 +77,29 @@ Including //writing// and //drawing// on a computer.
 
 §§ S
 
+• [[screaming-snake-case]]
 • [[semigraphics]]
 • [[sixel]]
+• [[slug-case]]
+• [[snake-case]]
+• [[string-case]]
 
 §§ T
 
 • [[tiff-format]]
+• [[title-case]]
+• [[title-slug-case]]
+• [[title-snake-case]]
 
 §§ U
 
 • [[unicode]]
 • [[unicode/private-use-area]]
+• [[upper-case]]
+• [[upper-camel-case]]
+• [[upper-slug-case]]
+• [[upper-snake-case]]
+• [[upper-llama-case]]
 • [[utf-8]]
 
 §§ V
