@@ -13,7 +13,15 @@ I.e., not only is the **lfg-format** meant to be easy for (non-programmer) human
 These concerns are placed higher than other concerns, such as file-size minimization.
 (Compression and other concerns are handled at other levels.)
 
+§§ Name
+
 "//LFG//" is an initialization of "//legible friendly graphics//".
+
+§§ "Modernized"
+
+One way to think of the **lfg-format** is — //what if you were going to try to "//modernize//" [[ascii-art]] and [[ansi-art]]//.
+
+§§ Related Formats
 
 The **lfg-format** is somewhat similar to the [[pbm-format]], the [[pgm-format]], the [[ppm-format]], the [[xbm-format]], and the [[xpm-format]].
 
