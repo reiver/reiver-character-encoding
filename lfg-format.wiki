@@ -170,3 +170,623 @@ Here is another example lfg image:
 In this example, the **image data** is 8×8, which gets magnified by a factor of 64, to make the actual image 512×512.
 It used 3 colors: ``#000000``, ``#233f8b``, and ``#fdbd96``.
 
+§§ Augmented BNF Specification
+
+This is how a **lfg-format**ted image is defined:
+
+	lfg-image  = magic-line width-line height-line magnification-line 1*palette-line block-separator pixel-data
+
+The **magic-line** is defined as follows:
+
+	magic-line   = "LFG/1" *spacing end-of-line
+	
+	spacing      = HT / CR / SP
+	
+	HT           = U+0009 ; horizontal-tab
+	CR           = U+000D ; carriage-return
+	SP           = U+0020 ; space
+	
+	end-of-line  = LF / RS / NEL / LS
+	
+	LF           = U+000A ; line-feed
+	RS           = U+001E ; row-separator
+	NEL          = U+0085 ; next-line
+	LS           = U+2028 ; line-separator
+
+Note that the carriage-return (U+000D) is considered //spacing// in a //lfg image//, and is not //a// or //part of// an end-of-line sequence.
+The reasoning for this is to make parsing the end-of-line easier — since it makes it so you don't have to worry about the //CR LF// and //LF CR// sequence.
+You can still use //CR LF// and //LF CR// if that is what your text-editor uses, and everything will still work out.
+
+The **width-line**, **height-line**, and **magnification-line** are defined as follows:
+
+	width-line           = numerals-line
+	height-line          = numerals-line
+	magnification-line   = numerals-line
+	
+	numerals-line        = *spacing numerals *spacing end-of-line
+	
+	numerals             = 1*numeral
+	
+	numeral              = zero / one / two / three / four / five / six / seven / eight / nine
+	
+	zero                 = western_arabic_zero  / eastern_arabic_zero  / persian_zero
+	one                  = western_arabic_one   / eastern_arabic_one   / persian_one
+	two                  = western_arabic_two   / eastern_arabic_two   / persian_two
+	three                = western_arabic_three / eastern_arabic_three / persian_three
+	four                 = western_arabic_four  / eastern_arabic_four  / persian_four
+	five                 = western_arabic_five  / eastern_arabic_five  / persian_five
+	six                  = western_arabic_six   / eastern_arabic_six   / persian_six
+	seven                = western_arabic_seven / eastern_arabic_seven / persian_seven
+	eight                = western_arabic_eight / eastern_arabic_eight / persian_eight
+	nine                 = western_arabic_nine  / eastern_arabic_nine  / persian_nine
+	
+	western_arabic_zero  = U+0030 ; "0"
+	western_arabic_one   = U+0031 ; "1"
+	western_arabic_two   = U+0032 ; "2"
+	western_arabic_three = U+0033 ; "3"
+	western_arabic_four  = U+0034 ; "4"
+	western_arabic_five  = U+0035 ; "5"
+	western_arabic_six   = U+0036 ; "6"
+	western_arabic_seven = U+0037 ; "7"
+	western_arabic_eight = U+0038 ; "8"
+	western_arabic_nine  = U+0039 ; "9"
+	
+	eastern_arabic_zero  = U+0660 ; "٠"
+	eastern_arabic_one   = U+0661 ; "١"
+	eastern_arabic_two   = U+0662 ; "٢"
+	eastern_arabic_three = U+0663 ; "٣"
+	eastern_arabic_four  = U+0664 ; "٤"
+	eastern_arabic_five  = U+0665 ; "٥"
+	eastern_arabic_six   = U+0666 ; "٦"
+	eastern_arabic_seven = U+0667 ; "٧"
+	eastern_arabic_eight = U+0668 ; "٨"
+	eastern_arabic_nine  = U+0669 ; "٩"
+	
+	persian_zero         = U+06F0 ; "۰"
+	persian_one          = U+06F1 ; "۱"
+	persian_two          = U+06F2 ; "۲"
+	persian_three        = U+06F3 ; "۳"
+	persian_four         = U+06F4 ; "۴"
+	persian_five         = U+06F5 ; "۵"
+	persian_six          = U+06F6 ; "۶"
+	persian_seven        = U+06F7 ; "۷"
+	persian_eight        = U+06F8 ; "۸"
+	persian_nine         = U+06F9 ; "۹"
+
+(Note that unlike the //magic-line//, a //numerals-line// allows optional spacing characters at the beginning.)
+
+The **palette-line** is defined as follows:
+
+	palette-line  = *spacing color separator character 1*spacing end-of-line
+	
+	separator     = US / 1*spacing
+	
+	US            = U+001F ; unit-separator
+	
+	color         = "#" 6*hexnumeral
+	
+	hexnumeral    = "0" / "1" / "2" / "3" / "4" / "5" / "6" / "7" / "8" / "9"
+	              / "A" / "B" / "C" / "D" / "E" / "F"
+	              / "a" / "b" / "c" / "d" / "e" / "f"
+
+The **block-separator** is defined as follows:
+
+	block-separator = *spacing (PS / end-of-line)
+	
+	PS              = U+2029 ; paragraph-separator
+
+The **pixel-data** is defined as follows:
+
+	pixel-data = pixel *ignored
+	
+	pixel      = *ignored palette-character
+	
+	ignored    = spacing / end-of-line
+
+And **palette-character** was one of the characters listed on the ``palette-line``s.
+
+§§ magic-line Examples
+
+Here are some ``magic-line`` examples.
+
+What will probably be the most likely ``magic-line`` you will see wil be:
+
+	"LFG/1" U+000A ; "LFG/1\n"
+
+	"LFG/1" U+001E ; "LFG/1\u001E"
+
+	"LFG/1" U+0085 ; "LFG/1\u0085"
+
+	"LFG/1" U+2028 ; "LFG/1\u2028"
+
+But there could also be ``spacing`` between the "``LFG/1``" and the ``end-of-line``:
+
+	"LFG/1" U+0009 U+000A ; "LFG/1\t\n"
+
+	"LFG/1" U+0009 U+001E ; "LFG/1\t\u001E"
+
+	"LFG/1" U+0009 U+0085 ; "LFG/1\t\u0085"
+
+	"LFG/1" U+0009 U+2028 ; "LFG/1\t\u2028"
+
+	"LFG/1" U+000D U+000A ; "LFG/1\r\n"
+
+	"LFG/1" U+000D U+001E ; "LFG/1\r\u001E"
+
+	"LFG/1" U+000D U+0085 ; "LFG/1\r\u0085"
+
+	"LFG/1" U+000D U+2028 ; "LFG/1\r\u2028"
+
+	"LFG/1" U+0020 U+000A ; "LFG/1 \n"
+
+	"LFG/1" U+0020 U+001E ; "LFG/1 \u001E"
+
+	"LFG/1" U+0020 U+0085 ; "LFG/1 \u0085"
+
+	"LFG/1" U+0020 U+2028 ; "LFG/1 \u2028"
+
+Including multiple ``spacing`` between the "``LFG/1``" and the ``end-of-line``:
+
+	"LFG/1" U+0020 U+0009 U+0009 U+000A ; "LFG/1 \t\t\n"
+
+	"LFG/1" U+0020 U+0009 U+0009 U+001E ; "LFG/1 \t\t\u001E"
+
+	"LFG/1" U+0020 U+0009 U+0009 U+0085 ; "LFG/1 \t\t\u0085"
+
+	"LFG/1" U+0020 U+0009 U+0009 U+2028 ; "LFG/1 \t\t\u2028"
+
+	"LFG/1" U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+000A ; "LFG/1\t\r \t\r \t\r \n"
+
+	"LFG/1" U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+001E ; "LFG/1\t\r \t\r \t\r \u001E"
+
+	"LFG/1" U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+0085 ; "LFG/1\t\r \t\r \t\r \u0085"
+
+	"LFG/1" U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+0009 U+000D U+0020 U+2028 ; "LFG/1\t\r \t\r \t\r \u2028"
+
+	"LFG/1" U+0020 U+0020 U+0020 U+0009 U+0009 U+0009 U+0020 U+0020 U+000D U+000D U+0020 U+0020 U+000A; "LFG   \t\t\t  \r\r  /1\n"
+
+	"LFG/1" U+0020 U+0020 U+0020 U+0009 U+0009 U+0009 U+0020 U+0020 U+000D U+000D U+0020 U+0020 U+001E; "LFG   \t\t\t  \r\r  /1\u001E"
+
+	"LFG/1" U+0020 U+0020 U+0020 U+0009 U+0009 U+0009 U+0020 U+0020 U+000D U+000D U+0020 U+0020 U+0085; "LFG   \t\t\t  \r\r  /1\u0085"
+
+	"LFG/1" U+0020 U+0020 U+0020 U+0009 U+0009 U+0009 U+0020 U+0020 U+000D U+000D U+0020 U+0020 U+2028; "LFG   \t\t\t  \r\r  /1\u2028"
+
+§§ numerals-line Examples
+
+Here are some ``numerals-line`` examples.
+
+What will probably be the most likely ``numerals-line`` you will see wil be something like:
+
+	"5" U+000A
+
+	"5" U+001E
+
+	"5" U+0085
+
+	"5" U+2028
+
+	"٥" U+000A
+
+	"٥" U+001E
+
+	"٥" U+0085
+
+	"٥" U+2028
+
+	"۵" U+000A
+
+	"۵" U+001E
+
+	"۵" U+0085
+
+	"۵" U+2028
+
+	"56" U+000A ; "56\n"
+
+	"56" U+001E ; "56\u001E"
+
+	"56" U+0085 ; "56\u0085"
+
+	"56" U+2028 ; "56\u2028"
+
+	"٥٦" U+000A ; "٥٦\n"
+
+	"٥٦" U+001E ; "٥٦\u001E"
+
+	"٥٦" U+0085 ; "٥٦\u0085"
+
+	"٥٦" U+2028 ; "٥٦\u2028"
+
+	"۵۶" U+000A ; "۵۶\n"
+
+	"۵۶" U+001E ; "۵۶\u001E"
+
+	"۵۶" U+0085 ; "۵۶\u0085"
+
+	"۵۶" U+2028 ; "۵۶\u2028"
+
+	"234" U+000A ; "234\n"
+
+	"234" U+001E ; "234\u001E"
+
+	"234" U+0085 ; "234\u0085"
+
+	"234" U+2028 ; "234\u2028"
+
+	"٢٣٤" U+000A ; "٢٣٤\n"
+
+	"٢٣٤" U+001E ; "٢٣٤\u001E"
+
+	"٢٣٤" U+0085 ; "٢٣٤\u0085"
+
+	"٢٣٤" U+2028 ; "٢٣٤\u2028"
+
+	"۲۳۴" U+000A ; "۲۳۴\n"
+
+	"۲۳۴" U+001E ; "۲۳۴\u001E"
+
+	"۲۳۴" U+0085 ; "۲۳۴\u0085"
+
+	"۲۳۴" U+2028 ; "۲۳۴\u2028"
+
+But there could also be ``spacing`` at the beginning of the line:
+
+	U+000D "۵۶" U+000A ; "\r۵۶\n"
+
+	U+000D "۵۶" U+001E ; "\r۵۶\u001E"
+
+	U+000D "۵۶" U+0085 ; "\r۵۶\u0085"
+
+	U+000D "۵۶" U+2028 ; "\r۵۶\u2028"
+
+	U+0020 "56" U+000A ; " 56\n"
+
+	U+0020 "56" U+001E ; " 56\u001E"
+
+	U+0020 "56" U+0085 ; " 56\u0085"
+
+	U+0020 "56" U+2028 ; " 56\u2028"
+
+	U+0020 "٥٦" U+000A ; " ٥٦\n"
+
+	U+0020 "٥٦" U+001E ; " ٥٦\u001E"
+
+	U+0020 "٥٦" U+0085 ; " ٥٦\u0085"
+
+	U+0020 "٥٦" U+2028 ; " ٥٦\u2028"
+
+	U+0020 "۵۶" U+000A ; " ۵۶\n"
+
+	U+0020 "۵۶" U+001E ; " ۵۶\u001E"
+
+	U+0020 "۵۶" U+0085 ; " ۵۶\u0085"
+
+	U+0020 "۵۶" U+2028 ; " ۵۶\u2028"
+
+But there could also be ``spacing`` at the beginning of the line:
+
+	U+0009 "56" U+000A ; "\t56\n"
+
+	U+0009 "56" U+001E ; "\t56\u001E"
+
+	U+0009 "56" U+0085 ; "\t56\u0085"
+
+	U+0009 "56" U+2028 ; "\t56\u2028"
+
+	U+0009 "٥٦" U+000A ; "\t٥٦\n"
+
+	U+0009 "٥٦" U+001E ; "\t٥٦\u001E"
+
+	U+0009 "٥٦" U+0085 ; "\t٥٦\u0085"
+
+	U+0009 "٥٦" U+2028 ; "\t٥٦\u2028"
+
+	U+0009 "۵۶" U+000A ; "\t۵۶\n"
+
+	U+0009 "۵۶" U+001E ; "\t۵۶\u001E"
+
+	U+0009 "۵۶" U+0085 ; "\t۵۶\u0085"
+
+	U+0009 "۵۶" U+2028 ; "\t۵۶\u2028"
+
+
+	U+000D "56" U+000A ; "\r56\n"
+
+	U+000D "56" U+001E ; "\r56\u001E"
+
+	U+000D "56" U+0085 ; "\r56\u0085"
+
+	U+000D "56" U+2028 ; "\r56\u2028"
+
+	U+000D "٥٦" U+000A ; "\r٥٦\n"
+
+	U+000D "٥٦" U+001E ; "\r٥٦\u001E"
+
+	U+000D "٥٦" U+0085 ; "\r٥٦\u0085"
+
+	U+000D "٥٦" U+2028 ; "\r٥٦\u2028"
+
+	U+000D "۵۶" U+000A ; "\r۵۶\n"
+
+	U+000D "۵۶" U+001E ; "\r۵۶\u001E"
+
+	U+000D "۵۶" U+0085 ; "\r۵۶\u0085"
+
+	U+000D "۵۶" U+2028 ; "\r۵۶\u2028"
+
+
+	U+0020 "56" U+000A ; " 56\n"
+
+	U+0020 "56" U+001E ; " 56\u001E"
+
+	U+0020 "56" U+0085 ; " 56\u0085"
+
+	U+0020 "56" U+2028 ; " 56\u2028"
+
+	U+0020 "٥٦" U+000A ; " ٥٦\n"
+
+	U+0020 "٥٦" U+001E ; " ٥٦\u001E"
+
+	U+0020 "٥٦" U+0085 ; " ٥٦\u0085"
+
+	U+0020 "٥٦" U+2028 ; " ٥٦\u2028"
+
+	U+0020 "۵۶" U+000A ; " ۵۶\n"
+
+	U+0020 "۵۶" U+001E ; " ۵۶\u001E"
+
+	U+0020 "۵۶" U+0085 ; " ۵۶\u0085"
+
+	U+0020 "۵۶" U+2028 ; " ۵۶\u2028"
+
+And there could also be ``spacing`` both at the beginning of the line and at the end of the line:
+
+	U+0009 "56" U+0009 U+000A ; "\t56\t\n"
+
+	U+0009 "56" U+0009 U+001E ; "\t56\t\u001E"
+
+	U+0009 "56" U+0009 U+0085 ; "\t56\t\u0085"
+
+	U+0009 "56" U+0009 U+2028 ; "\t56\t\u2028"
+
+	U+0009 "٥٦" U+0009 U+000A ; "\t٥٦\t\n"
+
+	U+0009 "٥٦" U+0009 U+001E ; "\t٥٦\t\u001E"
+
+	U+0009 "٥٦" U+0009 U+0085 ; "\t٥٦\t\u0085"
+
+	U+0009 "٥٦" U+0009 U+2028 ; "\t٥٦\t\u2028"
+
+	U+0009 "۵۶" U+0009 U+000A ; "\t۵۶\t\n"
+
+	U+0009 "۵۶" U+0009 U+001E ; "\t۵۶\t\u001E"
+
+	U+0009 "۵۶" U+0009 U+0085 ; "\t۵۶\t\u0085"
+
+	U+0009 "۵۶" U+0009 U+2028 ; "\t۵۶\t\u2028"
+
+
+	U+0009 "56" U+000D U+000A ; "\t56\r\n"
+
+	U+0009 "56" U+000D U+001E ; "\t56\r\u001E"
+
+	U+0009 "56" U+000D U+0085 ; "\t56\r\u0085"
+
+	U+0009 "56" U+000D U+2028 ; "\t56\r\u2028"
+
+	U+0009 "٥٦" U+000D U+000A ; "\t٥٦\r\n"
+
+	U+0009 "٥٦" U+000D U+001E ; "\t٥٦\r\u001E"
+
+	U+0009 "٥٦" U+000D U+0085 ; "\t٥٦\r\u0085"
+
+	U+0009 "٥٦" U+000D U+2028 ; "\t٥٦\r\u2028"
+
+	U+0009 "۵۶" U+000D U+000A ; "\t۵۶\r\n"
+
+	U+0009 "۵۶" U+000D U+001E ; "\t۵۶\r\u001E"
+
+	U+0009 "۵۶" U+000D U+0085 ; "\t۵۶\r\u0085"
+
+	U+0009 "۵۶" U+000D U+2028 ; "\t۵۶\r\u2028"
+
+
+	U+0009 "56" U+0020 U+000A ; "\t56 \n"
+
+	U+0009 "56" U+0020 U+001E ; "\t56 \u001E"
+
+	U+0009 "56" U+0020 U+0085 ; "\t56 \u0085"
+
+	U+0009 "56" U+0020 U+2028 ; "\t56 \u2028"
+
+	U+0009 "٥٦" U+0020 U+000A ; "\t٥٦ \n"
+
+	U+0009 "٥٦" U+0020 U+001E ; "\t٥٦ \u001E"
+
+	U+0009 "٥٦" U+0020 U+0085 ; "\t٥٦ \u0085"
+
+	U+0009 "٥٦" U+0020 U+2028 ; "\t٥٦ \u2028"
+
+	U+0009 "۵۶" U+0020 U+000A ; "\t۵۶ \n"
+
+	U+0009 "۵۶" U+0020 U+001E ; "\t۵۶ \u001E"
+
+	U+0009 "۵۶" U+0020 U+0085 ; "\t۵۶ \u0085"
+
+	U+0009 "۵۶" U+0020 U+2028 ; "\t۵۶ \u2028"
+
+
+	U+000D "56" U+000A U+000A ; "\r56\t\n"
+
+	U+000D "56" U+000A U+001E ; "\r56\t\u001E"
+
+	U+000D "56" U+000A U+0085 ; "\r56\t\u0085"
+
+	U+000D "56" U+000A U+2028 ; "\r56\t\u2028"
+
+	U+000D "٥٦" U+000A U+000A ; "\r٥٦\t\n"
+
+	U+000D "٥٦" U+000A U+001E ; "\r٥٦\t\u001E"
+
+	U+000D "٥٦" U+000A U+0085 ; "\r٥٦\t\u0085"
+
+	U+000D "٥٦" U+000A U+2028 ; "\r٥٦\t\u2028"
+
+	U+000D "۵۶" U+000A U+000A ; "\r۵۶\t\n"
+
+	U+000D "۵۶" U+000A U+001E ; "\r۵۶\t\u001E"
+
+	U+000D "۵۶" U+000A U+0085 ; "\r۵۶\t\u0085"
+
+	U+000D "۵۶" U+000A U+2028 ; "\r۵۶\t\u2028"
+
+
+	U+000D "56" U+000D U+000A ; "\r56\r\n"
+
+	U+000D "56" U+000D U+001E ; "\r56\r\u001E"
+
+	U+000D "56" U+000D U+0085 ; "\r56\r\u0085"
+
+	U+000D "56" U+000D U+2028 ; "\r56\r\u2028"
+
+	U+000D "٥٦" U+000D U+000A ; "\r٥٦\r\n"
+
+	U+000D "٥٦" U+000D U+001E ; "\r٥٦\r\u001E"
+
+	U+000D "٥٦" U+000D U+0085 ; "\r٥٦\r\u0085"
+
+	U+000D "٥٦" U+000D U+2028 ; "\r٥٦\r\u2028"
+
+	U+000D "۵۶" U+000D U+000A ; "\r۵۶\r\n"
+
+	U+000D "۵۶" U+000D U+001E ; "\r۵۶\r\u001E"
+
+	U+000D "۵۶" U+000D U+0085 ; "\r۵۶\r\u0085"
+
+	U+000D "۵۶" U+000D U+2028 ; "\r۵۶\r\u2028"
+
+
+	U+000D "56" U+0020 U+000A ; "\r56 \n"
+
+	U+000D "56" U+0020 U+001E ; "\r56 \u001E"
+
+	U+000D "56" U+0020 U+0085 ; "\r56 \u0085"
+
+	U+000D "56" U+0020 U+2028 ; "\r56 \u2028"
+
+	U+000D "٥٦" U+0020 U+000A ; "\r٥٦ \n"
+
+	U+000D "٥٦" U+0020 U+001E ; "\r٥٦ \u001E"
+
+	U+000D "٥٦" U+0020 U+0085 ; "\r٥٦ \u0085"
+
+	U+000D "٥٦" U+0020 U+2028 ; "\r٥٦ \u2028"
+
+	U+000D "۵۶" U+0020 U+000A ; "\r۵۶ \n"
+
+	U+000D "۵۶" U+0020 U+001E ; "\r۵۶ \u001E"
+
+	U+000D "۵۶" U+0020 U+0085 ; "\r۵۶ \u0085"
+
+	U+000D "۵۶" U+0020 U+2028 ; "\r۵۶ \u2028"
+
+
+	U+0020 "56" U+0009 U+000A ; " 56\t\n"
+
+	U+0020 "56" U+0009 U+001E ; " 56\t\u001E"
+
+	U+0020 "56" U+0009 U+0085 ; " 56\t\u0085"
+
+	U+0020 "56" U+0009 U+2028 ; " 56\t\u2028"
+
+	U+0020 "٥٦" U+0009 U+000A ; " ٥٦\t\n"
+
+	U+0020 "٥٦" U+0009 U+001E ; " ٥٦\t\u001E"
+
+	U+0020 "٥٦" U+0009 U+0085 ; " ٥٦\t\u0085"
+
+	U+0020 "٥٦" U+0009 U+2028 ; " ٥٦\t\u2028"
+
+	U+0020 "۵۶" U+0009 U+000A ; " ۵۶\t\n"
+
+	U+0020 "۵۶" U+0009 U+001E ; " ۵۶\t\u001E"
+
+	U+0020 "۵۶" U+0009 U+0085 ; " ۵۶\t\u0085"
+
+	U+0020 "۵۶" U+0009 U+2028 ; " ۵۶\t\u2028"
+
+
+	U+0020 "56" U+000D U+000A ; " 56\r\n"
+
+	U+0020 "56" U+000D U+001E ; " 56\r\u001E"
+
+	U+0020 "56" U+000D U+0085 ; " 56\r\u0085"
+
+	U+0020 "56" U+000D U+2028 ; " 56\r\u2028"
+
+	U+0020 "٥٦" U+000D U+000A ; " ٥٦\r\n"
+
+	U+0020 "٥٦" U+000D U+001E ; " ٥٦\r\u001E"
+
+	U+0020 "٥٦" U+000D U+0085 ; " ٥٦\r\u0085"
+
+	U+0020 "٥٦" U+000D U+2028 ; " ٥٦\r\u2028"
+
+	U+0020 "۵۶" U+000D U+000A ; " ۵۶\r\n"
+
+	U+0020 "۵۶" U+000D U+001E ; " ۵۶\r\u001E"
+
+	U+0020 "۵۶" U+000D U+0085 ; " ۵۶\r\u0085"
+
+	U+0020 "۵۶" U+000D U+2028 ; " ۵۶\r\u2028"
+
+
+	U+0020 "56" U+0020 U+000A ; " 56 \n"
+
+	U+0020 "56" U+0020 U+001E ; " 56 \u001E"
+
+	U+0020 "56" U+0020 U+0085 ; " 56 \u0085"
+
+	U+0020 "56" U+0020 U+2028 ; " 56 \u2028"
+
+	U+0020 "٥٦" U+0020 U+000A ; " ٥٦ \n"
+
+	U+0020 "٥٦" U+0020 U+001E ; " ٥٦ \u001E"
+
+	U+0020 "٥٦" U+0020 U+0085 ; " ٥٦ \u0085"
+
+	U+0020 "٥٦" U+0020 U+2028 ; " ٥٦ \u2028"
+
+	U+0020 "۵۶" U+0020 U+000A ; " ۵۶ \n"
+
+	U+0020 "۵۶" U+0020 U+001E ; " ۵۶ \u001E"
+
+	U+0020 "۵۶" U+0020 U+0085 ; " ۵۶ \u0085"
+
+	U+0020 "۵۶" U+0020 U+2028 ; " ۵۶ \u2028"
+
+Including multiple spacing characters; for example:
+
+	U+000D U+0020 U+0009 U+0009 "56" U+0020 U+000D U+000A ; "\r \t\t56 \r\n"
+
+	U+000D U+0020 U+0009 U+0009 "56" U+0020 U+000D U+001E ; "\r \t\t56 \r\u001E"
+
+	U+000D U+0020 U+0009 U+0009 "56" U+0020 U+000D U+0085 ; "\r \t\t56 \r\u0085"
+
+	U+000D U+0020 U+0009 U+0009 "56" U+0020 U+000D U+2028 ; "\r \t\t56 \r\u2028"
+
+	U+000D U+0020 U+0009 U+0009 "٥٦" U+0020 U+000D U+000A ; "\r \t\t٥٦ \r\n"
+
+	U+000D U+0020 U+0009 U+0009 "٥٦" U+0020 U+000D U+001E ; "\r \t\t٥٦ \r\u001E"
+
+	U+000D U+0020 U+0009 U+0009 "٥٦" U+0020 U+000D U+0085 ; "\r \t\t٥٦ \r\u0085"
+
+	U+000D U+0020 U+0009 U+0009 "٥٦" U+0020 U+000D U+2028 ; "\r \t\t٥٦ \r\u2028"
+
+	U+000D U+0020 U+0009 U+0009 "۵۶" U+0020 U+000D U+000A ; "\r \t\t۵۶ \r\n"
+
+	U+000D U+0020 U+0009 U+0009 "۵۶" U+0020 U+000D U+001E ; "\r \t\t۵۶ \r\u001E"
+
+	U+000D U+0020 U+0009 U+0009 "۵۶" U+0020 U+000D U+0085 ; "\r \t\t۵۶ \r\u0085"
+
+	U+000D U+0020 U+0009 U+0009 "۵۶" U+0020 U+000D U+2028 ; "\r \t\t۵۶ \r\u2028"
