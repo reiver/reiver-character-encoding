@@ -21,9 +21,11 @@ These concerns are placed higher than other concerns, such as file-size minimiza
 
 One way to think of the **lfg-format** is — //what if you were going to try to "//modernize//" [[ascii-art]] and [[ansi-art]]//.
 
+The intent behind the **lfg-format** is — it should be a easy to create an **lfg-format** image as it is to create [[ascii-art]] and [[ansi-art]].
+
 §§ Related Formats
 
-The **lfg-format** is somewhat similar to the [[pbm-format]], the [[pgm-format]], the [[ppm-format]], the [[xbm-format]], and the [[xpm-format]].
+The **lfg-format** is somewhat (also) similar to the [[pbm-format]], the [[pgm-format]], the [[ppm-format]], the [[xbm-format]], and the [[xpm-format]].
 
 §§ Example
 
