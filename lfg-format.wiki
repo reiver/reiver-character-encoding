@@ -174,7 +174,7 @@ It used 3 colors: ``#000000``, ``#233f8b``, and ``#fdbd96``.
 
 This is how a **lfg-format**ted image is defined:
 
-	lfg-image  = magic-line width-line height-line magnification-line 1*palette-line block-separator pixel-data
+	lfg-image  = magic-line width-line height-line magnification-line 1*palette-line block-separator pixels-data
 
 The **magic-line** is defined as follows:
 
@@ -275,8 +275,10 @@ The **block-separator** is defined as follows:
 	
 	PS              = U+2029 ; paragraph-separator
 
-The **pixel-data** is defined as follows:
+The **pixels-data** is defined as follows:
 
+	pixels-data = *ignored N*pixel
+	
 	pixel-data = pixel *ignored
 	
 	pixel      = *ignored palette-character
@@ -284,6 +286,8 @@ The **pixel-data** is defined as follows:
 	ignored    = spacing / end-of-line
 
 And **palette-character** was one of the characters listed on the ``palette-line``s.
+
+And where the **N** (in ``N*pixel``) is equal to: width × height.
 
 §§ magic-line Examples
 
