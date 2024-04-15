@@ -257,7 +257,7 @@ The **width-line**, **height-line**, and **magnification-line** are defined as f
 
 The **palette-line** is defined as follows:
 
-	palette-line  = *spacing color separator character 1*spacing end-of-line
+	palette-line  = *spacing color separator character *spacing end-of-line
 	
 	separator     = US / 1*spacing
 	
