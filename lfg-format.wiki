@@ -4,7 +4,7 @@ wiki/1
 
 ⸺ by Charles Iliya Krempeaux
 
-The **lfg-format** is an **image** [[data-format]] created by **Charles Iliya Krempeaux**.
+The **lfg-format** is an **image** [[data-format]].
 
 The **lfg-format** is meant to not only be [[human-legible]], [[programmer-legible]], and [[machine-legible]], but — it is also meant to be [[human-friendly]].
 
@@ -794,3 +794,7 @@ Including multiple spacing characters; for example:
 	U+000D U+0020 U+0009 U+0009 "۵۶" U+0020 U+000D U+0085 ; "\r \t\t۵۶ \r\u0085"
 
 	U+000D U+0020 U+0009 U+0009 "۵۶" U+0020 U+000D U+2028 ; "\r \t\t۵۶ \r\u2028"
+
+§§ Author
+
+The **lfg-format** was created by **Charles Iliya Krempeaux**.
