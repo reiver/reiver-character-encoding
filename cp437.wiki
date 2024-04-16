@@ -4,7 +4,7 @@ wiki/1
 
 ⸺ by Charles Iliya Krempeaux
 
-The **CP437** [[character-set]] is a 128-bit character-set that was common with the IBM PC and the IBM PC clones.
+The **CP437** [[character-set]] is a 256-bit character-set that was common with the IBM PC and the IBM PC clones.
 
 Other names for CP437 include:
 
