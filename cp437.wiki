@@ -19,6 +19,6 @@ All CP437 characters have equivalents in the [[unicode]] character-set; although
 
 §§ Art
 
-A lot of the vintage [[ansi-art]] used the **cp437** character-set.
+A lot of the vintage [[ansi-art]], including [[ansimation]]s, used the **cp437** character-set.
 
 A lot of the (so called) [[ascii-art]] also actually used the **cp437** character-set (rather than the [[ascii]] character-set.)
