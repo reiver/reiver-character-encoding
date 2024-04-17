@@ -5,9 +5,9 @@ wiki/1
 ⸺ by Charles Iliya Krempeaux
 
 **UTF-8** is a variable length encoding of the [[unicode]] [[character-set]].
-An encoding of a single [[unicode]] [[code-point] can be from 1 to 4 [[byte]]s longs.
+An encoding of a single [[unicode]] [[code-point]] can be from 1 to 4 [[byte]]s longs.
 
-Some examples of **UTF-8*** encoding of [[unicode]] [[code-point]]s are:
+Some examples of **UTF-8** encoding of [[unicode]] [[code-point]]s are:
 
 	┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 	┃                            UTF-8 encoding                             ┃       ┃            ┃         ┃                                ┃                                  ┃
