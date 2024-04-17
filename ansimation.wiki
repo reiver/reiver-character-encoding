@@ -4,7 +4,7 @@ wiki/1
 
 ⸺ by Charles Iliya Krempeaux
 
-An **ansimation** is an animation created using (some type of) text characters and ANSI‐escape‐codes.
+An **ansimation** is an animation created using characters from some type of [[character-set]] (which was usually [[cp437]]) and ANSI‐escape‐codes.
 
 The ANSI‐escape‐codes are typically used for:
 
@@ -14,8 +14,8 @@ The ANSI‐escape‐codes are typically used for:
 • setting the background color of a character,
 • setting the foreground color of a character.
 
-Ansimations are designed to run on [[computer-terminal]]s or [[computer-terminal-emulator]]s that support ANSI‐escape‐codes.
+**Ansimations** are designed to run on [[computer-terminal]]s or [[computer-terminal-emulator]]s that support ANSI‐escape‐codes.
 
-An ansimation animation's frame-rate  depend on the inherent baud-rates of the computer-terminal.
+An ansimation animation's frame-rate depends on the inherent baud-rates of the computer-terminal.
 The faster the baud-rate, the faster the frame-rate of the ansimation animation.
 The slower the baud-rate, the slower the frame-rate of the ansimation animation.
